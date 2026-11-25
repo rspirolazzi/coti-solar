@@ -1,0 +1,38 @@
+﻿# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+
+# next
+/.next
+/out
+/tsconfig.tsbuildinfo
+
+# testing
+/coverage
+/playwright-report
+/test-results
+
+# production
+/build
+
+# misc
+.DS_Store
+.env
+.env.*
+!.env.example
+docker-compose.override.yml
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# logs / tooling
+*.log
+.npm-cache
+.vercel
+
+# generated smoke artifacts
+cotisolar-test.*
+pdf-debug.*
+xlsx-debug.*

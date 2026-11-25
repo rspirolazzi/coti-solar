@@ -1,0 +1,32 @@
+services:
+  cotisolar:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cotisolar:local
+    ports:
+      - "${APP_PORT:-3001}:3000"
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: "0.0.0.0"
+      APP_URL: "${APP_URL:-http://localhost:3001}"
+      # Opcional: sin clave funciona Photon. Si se configura, se puede usar Google.
+      GEOCODER_PROVIDER: "${GEOCODER_PROVIDER:-photon}"
+      GOOGLE_MAPS_API_KEY: "${GOOGLE_MAPS_API_KEY:-}"
+    restart: unless-stopped
+    init: true
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 20s

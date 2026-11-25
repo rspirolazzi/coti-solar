@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 794 1123" role="img" aria-label="Plantilla de portada de reporte CotiSolar">
+  <title>Reporte CotiSolar — portada</title>
+  <rect width="794" height="1123" fill="#F6F1E7"/>
+  <rect width="794" height="340" fill="#0C2233"/>
+
+  <g transform="translate(56,44) scale(0.55)">
+    <path d="M69.86 21.96A34 34 0 1 0 69.86 74.04" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="48" cy="48" r="13" fill="#F6A81C"/>
+  </g>
+  <text x="124" y="88" font-family="Sora, Inter, 'Segoe UI', sans-serif" font-size="40" font-weight="700" letter-spacing="-1.4" fill="#FFFFFF">Coti<tspan font-weight="600">Solar</tspan><tspan fill="#F6A81C">.</tspan></text>
+
+  <text x="56" y="164" font-family="Inter, 'Segoe UI', sans-serif" font-size="13" font-weight="700" letter-spacing="3" fill="#F6A81C">REPORTE FOTOVOLTAICO</text>
+  <text x="56" y="234" font-family="Sora, Inter, 'Segoe UI', sans-serif" font-size="46" font-weight="700" letter-spacing="-1.5" fill="#FFFFFF">Dimensionamiento</text>
+  <text x="56" y="288" font-family="Sora, Inter, 'Segoe UI', sans-serif" font-size="46" font-weight="700" letter-spacing="-1.5" fill="#FFFFFF">fotovoltaico</text>
+  <text x="56" y="322" font-family="Inter, 'Segoe UI', sans-serif" font-size="16" fill="#A9B8C6">Sistema autónomo · off-grid</text>
+
+  <rect x="56" y="388" width="682" height="160" rx="18" fill="#FFFFFF" stroke="#E4DCCD"/>
+  <text x="80" y="426" font-family="Inter, 'Segoe UI', sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#64748B">CLIENTE / OBRA</text>
+  <text x="80" y="452" font-family="Sora, Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="600" fill="#0C2233">—</text>
+  <text x="80" y="486" font-family="Inter, 'Segoe UI', sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#64748B">UBICACIÓN</text>
+  <text x="80" y="512" font-family="Sora, Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="600" fill="#0C2233">—</text>
+  <text x="470" y="426" font-family="Inter, 'Segoe UI', sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#64748B">FECHA</text>
+  <text x="470" y="452" font-family="Sora, Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="600" fill="#0C2233">—</text>
+  <text x="470" y="486" font-family="Inter, 'Segoe UI', sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#64748B">RESPONSABLE</text>
+  <text x="470" y="512" font-family="Sora, Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="600" fill="#0C2233">—</text>
+
+  <g font-family="Inter, 'Segoe UI', sans-serif">
+    <rect x="56" y="586" width="214" height="132" rx="18" fill="#FFFFFF" stroke="#E4DCCD"/>
+    <text x="76" y="620" font-size="11" font-weight="700" letter-spacing="1.3" fill="#64748B">CONSUMO MÁXIMO</text>
+    <text x="76" y="668" font-size="34" font-weight="700" fill="#0C2233">—</text>
+    <text x="76" y="694" font-size="13" fill="#64748B">Wh/día</text>
+
+    <rect x="290" y="586" width="214" height="132" rx="18" fill="#FFFFFF" stroke="#E4DCCD"/>
+    <text x="310" y="620" font-size="11" font-weight="700" letter-spacing="1.3" fill="#64748B">POTENCIA FV</text>
+    <text x="310" y="668" font-size="34" font-weight="700" fill="#0C2233">—</text>
+    <text x="310" y="694" font-size="13" fill="#64748B">W</text>
+
+    <rect x="524" y="586" width="214" height="132" rx="18" fill="#0C2233"/>
+    <text x="544" y="620" font-size="11" font-weight="700" letter-spacing="1.3" fill="#F6A81C">BANCO DE BATERÍAS</text>
+    <text x="544" y="668" font-size="34" font-weight="700" fill="#FFFFFF">—</text>
+    <text x="544" y="694" font-size="13" fill="#A9B8C6">Ah</text>
+  </g>
+
+  <text x="56" y="790" font-family="Sora, Inter, 'Segoe UI', sans-serif" font-size="28" font-weight="700" letter-spacing="-0.8" fill="#0C2233">Resumen del sistema</text>
+
+  <g font-family="Inter, 'Segoe UI', sans-serif" font-size="16" fill="#0C2233">
+    <line x1="56" y1="816" x2="738" y2="816" stroke="#E4DCCD"/>
+    <text x="56" y="850">Paneles solares</text>
+    <text x="738" y="850" text-anchor="end" font-weight="700">—</text>
+    <line x1="56" y1="870" x2="738" y2="870" stroke="#E4DCCD"/>
+    <text x="56" y="904">Baterías</text>
+    <text x="738" y="904" text-anchor="end" font-weight="700">—</text>
+    <line x1="56" y1="924" x2="738" y2="924" stroke="#E4DCCD"/>
+    <text x="56" y="958">Regulador de carga</text>
+    <text x="738" y="958" text-anchor="end" font-weight="700">—</text>
+    <line x1="56" y1="978" x2="738" y2="978" stroke="#E4DCCD"/>
+    <text x="56" y="1012">Inversor</text>
+    <text x="738" y="1012" text-anchor="end" font-weight="700">—</text>
+  </g>
+
+  <line x1="56" y1="1046" x2="738" y2="1046" stroke="#E4DCCD"/>
+  <text x="56" y="1080" font-family="Sora, Inter, 'Segoe UI', sans-serif" font-size="24" font-weight="700" letter-spacing="-0.8" fill="#0C2233">Coti<tspan font-weight="600">Solar</tspan><tspan fill="#F6A81C">.</tspan></text>
+  <text x="738" y="1080" text-anchor="end" font-family="Inter, 'Segoe UI', sans-serif" font-size="13" fill="#64748B">CotiSolar: la cuenta que cierra. · 1/4</text>
+</svg>

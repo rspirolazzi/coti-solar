@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" role="img" aria-label="Plantilla cuadrada para redes de CotiSolar">
+  <title>Post cuadrado CotiSolar</title>
+  <rect width="1080" height="1080" fill="#0C2233"/>
+
+  <text x="540" y="112" text-anchor="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="16" font-weight="700" letter-spacing="3" fill="#F6A81C">DIMENSIONAMIENTO FOTOVOLTAICO</text>
+
+  <g transform="translate(414,190) scale(2.6)">
+    <path d="M69.86 21.96A34 34 0 1 0 69.86 74.04" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round"/>
+    <circle cx="48" cy="48" r="13" fill="#F6A81C"/>
+  </g>
+
+  <text x="540" y="640" text-anchor="middle" font-family="Sora, Inter, 'Segoe UI', sans-serif" font-size="92" font-weight="700" letter-spacing="-3" fill="#FFFFFF">Coti<tspan font-weight="600">Solar</tspan><tspan fill="#F6A81C">.</tspan></text>
+  <text x="540" y="724" text-anchor="middle" font-family="Sora, Inter, 'Segoe UI', sans-serif" font-size="38" font-weight="600" letter-spacing="-0.8" fill="#F6A81C">La cuenta que cierra.</text>
+
+  <line x1="340" y1="806" x2="740" y2="806" stroke="#2A4A66"/>
+  <text x="540" y="866" text-anchor="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="20" fill="#A9B8C6">Del relevamiento al presupuesto, en minutos.</text>
+  <text x="540" y="1010" text-anchor="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="18" font-weight="600" fill="#FFFFFF">cotisolar.com</text>
+</svg>
