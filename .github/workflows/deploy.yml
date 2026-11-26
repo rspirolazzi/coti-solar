@@ -1,0 +1,110 @@
+name: Build and Deploy Docker to DigitalOcean
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  # GitHub Container Registry. Los paquetes de una cuenta personal se crean privados.
+  REGISTRY: ghcr.io
+  IMAGE_WEB: ghcr.io/rspirolazzi/cotisolar-frontend
+  DEPLOY_PATH: /root/projects
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    # GITHUB_TOKEN: leer el repo y publicar/leer los paquetes en GHCR
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Read app version
+        id: app_version
+        run: |
+          APP_VERSION=$(node -pe "require('./site/package.json').version")
+          echo "value=$APP_VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Prepare build metadata
+        id: build_meta
+        run: |
+          echo "date=$(date -u +'%Y-%m-%d %H:%M UTC')" >> "$GITHUB_OUTPUT"
+          echo "sha_short=${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+          echo "release_tag=main-${GITHUB_RUN_NUMBER}" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Docker metadata (web)
+        id: meta_web
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.IMAGE_WEB }}
+          tags: |
+            type=raw,value=latest
+            type=sha,prefix=sha-
+
+      - name: Build and push API image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./app/Dockerfile
+          push: true
+          tags: ${{ steps.meta_api.outputs.tags }}
+          labels: ${{ steps.meta_api.outputs.labels }}
+
+      - name: Build and push web image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./site/Dockerfile
+          push: true
+          tags: ${{ steps.meta_web.outputs.tags }}
+          labels: ${{ steps.meta_web.outputs.labels }}
+          build-args: |
+            NEXT_PUBLIC_TURNSTILE_SITE_KEY=${{ secrets.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
+            NEXT_PUBLIC_APP_VERSION=${{ steps.app_version.outputs.value }}
+            NEXT_PUBLIC_BUILD_NUMBER=${{ github.run_number }}
+            NEXT_PUBLIC_BUILD_DATE=${{ steps.build_meta.outputs.date }}
+            NEXT_PUBLIC_RELEASE_TAG=${{ steps.build_meta.outputs.release_tag }}
+            NEXT_PUBLIC_GIT_SHA=${{ steps.build_meta.outputs.sha_short }}
+
+      - name: Update containers on DigitalOcean droplet
+        uses: appleboy/ssh-action@v1.2.0
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GHCR_USER: ${{ github.actor }}
+        with:
+          host: ${{ secrets.DROPLET_IP }}
+          username: ${{ secrets.DROPLET_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: GHCR_TOKEN,GHCR_USER,REGISTRY
+          script: |
+            set -euo pipefail
+
+            cd "${{ env.DEPLOY_PATH }}"
+
+            # Las imágenes son privadas: login temporal con el GITHUB_TOKEN del job
+            # (vence al terminar el workflow) y logout apenas se bajan.
+            echo "$GHCR_TOKEN" | docker login "$REGISTRY" -u "$GHCR_USER" --password-stdin
+            docker compose pull api web
+            docker logout "$REGISTRY"
+            docker compose up -d api web
+
+            # Limpiar imágenes dangling (sin tag ni uso)
+            docker image prune -f
+
+            # Basic rollout verification.
+            docker compose ps
