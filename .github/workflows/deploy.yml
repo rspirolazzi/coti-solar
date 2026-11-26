@@ -56,15 +56,6 @@ jobs:
             type=raw,value=latest
             type=sha,prefix=sha-
 
-      - name: Build and push API image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: ./app/Dockerfile
-          push: true
-          tags: ${{ steps.meta_api.outputs.tags }}
-          labels: ${{ steps.meta_api.outputs.labels }}
-
       - name: Build and push web image
         uses: docker/build-push-action@v6
         with:
@@ -99,9 +90,9 @@ jobs:
             # Las imágenes son privadas: login temporal con el GITHUB_TOKEN del job
             # (vence al terminar el workflow) y logout apenas se bajan.
             echo "$GHCR_TOKEN" | docker login "$REGISTRY" -u "$GHCR_USER" --password-stdin
-            docker compose pull api web
+            docker compose pull cotisolar-frontend
             docker logout "$REGISTRY"
-            docker compose up -d api web
+            docker compose up -d cotisolar-frontend
 
             # Limpiar imágenes dangling (sin tag ni uso)
             docker image prune -f
